@@ -1,2 +1,3 @@
 #!/bin/sh
-curl -4 wttr.in/Moscow
+test "$#" = 1 || {echo "Usage: ${0##*/} site"; exit 1}
+SITE = "$1"
