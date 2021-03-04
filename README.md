@@ -4,5 +4,5 @@ What it will be do:
 2) Install and configure MariaDB (MyISAM)
 3) Install php
 
-What ready Now:
+What's ready Now:
 1)Just testing
