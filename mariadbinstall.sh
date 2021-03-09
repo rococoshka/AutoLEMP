@@ -1,8 +1,8 @@
 #!/bin/sh
 
 install_packages() {
-	apt update --no-install-recommends
-	apt install -y mariadb-server
+	apt update 
+	apt install --no-install-recommends -y mariadb-server
 }
 
 myisam_conf(){
