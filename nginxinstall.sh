@@ -79,7 +79,7 @@ printf "server {
 		alias /var/lib/dehydrated/acme-challenges;
 		}
 	location / {
-		return 301 https://$host$request_uri; }
+		return 301 https://\$host\$request_uri; }
 	}" > /etc/nginx/sites-enabled/$yourdomain.conf
 
 nginx -s reload
