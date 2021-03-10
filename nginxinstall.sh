@@ -19,7 +19,7 @@ nginx_default() {
 
 	server_tokens off;
 
-	default_type "text/html";
+	default_type \"text/html\";
 	return 200 'Hello, do you want to see the puppies';
 	}
 
@@ -32,7 +32,7 @@ server {
 
 	server_tokens off;
 
-	default_type "text/html";
+	default_type \"text/html\";
 	return 200 'Hello, do you want to see the puppies safely';
 	}" > /etc/nginx/sites-enabled/default
 
@@ -86,25 +86,22 @@ nginx -s reload
 dehydrated -c
 }
 
-setup_https_siteconf() {
-printf  "server {
-	listen 443 ssl;
-	server_name $yourdomain www.$yourdomain;
-	
-	ssl_certificate /var/lib/dehydrated/certs/$yourdomain/fullchain.pem;
-	ssl_certificate_key /var/lib/dehydrated/certs/$yourdomain/privkey.pem;
-	}
-}
 
-dehydratedauto() {
-printf "#!/bin/sh
+dehydrate_update() {
+
+printf "#!bin/bash
 
 dehydrated -c -g" > /etc/cron.weekly/Dehydrated
 chmod +x /etc/cron.weekly/Dehydrated
 printf "#!/bin/sh
 
-test "$1" = "deploy_cert" || exit 0
-
+test \"\$1\" = \"deploy_cert\" || exit 0
 nginx -s reload" > /etc/dehydrated/hook.sh
 chmod +x /etc/dehydrated/hook.sh
 }
+php_install
+nginx_light_install
+setup_default_site
+setup_dehydrated
+setup_certificate_siteconf
+dehydrate_update
