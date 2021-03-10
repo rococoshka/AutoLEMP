@@ -75,7 +75,7 @@ printf "$yourdomain www.$yourdomain" > /etc/dehydrated/domains.txt
 setup_certificate_siteconf() {
 printf "server {
 	server_name $yourdomain www.$yourdomain;
-	location ^~ /.well-known/acme-challenges {
+	location ^~ /.well-known/acme-challenge {
 		alias /var/lib/dehydrated/acme-challenges;
 		}
 	location / {
