@@ -63,8 +63,8 @@ cd /usr/bin
 wget https://raw.githubusercontent.com/lukas2511/dehydrated/master/dehydrated
 chmod +x dehydrated
 cd~
-mkdir /etc/dehydrated /var/lib/dehydrated /etc/dehydrated/acme-challenges;
-printf "BASEDIE=/var/lib/dehydrated
+mkdir /etc/dehydrated /var/lib/dehydrated /var/lib/dehydrated/acme-challenges  /etc/dehydrated/acme-challenges;
+printf "BASEDIR=/var/lib/dehydrated
 WELLKNOWN=\"\${BASEDIR}/acme-challenges\"
 DOMAINS_TXT=\"/etc/dehydrated/domains.txt\"" > /etc/dehydrated/config
 dehydrated --register --accept-terms
@@ -74,6 +74,7 @@ printf "$yourdomain www.$yourdomain" > /etc/dehydrated/domains.txt
 
 setup_certificate_siteconf() {
 printf "server {
+	listen 80;
 	server_name $yourdomain www.$yourdomain;
 	location ^~ /.well-known/acme-challenge {
 		alias /var/lib/dehydrated/acme-challenges;
@@ -99,9 +100,9 @@ test \"\$1\" = \"deploy_cert\" || exit 0
 nginx -s reload" > /etc/dehydrated/hook.sh
 chmod +x /etc/dehydrated/hook.sh
 }
-php_install
-nginx_light_install
-setup_default_site
+#php_install
+#nginx_light_install
+#setup_default_site
 setup_dehydrated
 setup_certificate_siteconf
-dehydrate_update
+#dehydrate_update
