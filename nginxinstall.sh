@@ -4,7 +4,7 @@ yourdomain="$1"
 
 php_install() {
 	apt update
-	apt install --no-install-recommends -y php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip
+	apt install --no-install-recommends -y php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip php-cli
 }
 
 nginx_light_install() {
@@ -100,9 +100,9 @@ test \"\$1\" = \"deploy_cert\" || exit 0
 nginx -s reload" > /etc/dehydrated/hook.sh
 chmod +x /etc/dehydrated/hook.sh
 }
-#php_install
-#nginx_light_install
-#setup_default_site
+php_install
+nginx_light_install
+setup_default_site
 setup_dehydrated
 setup_certificate_siteconf
-#dehydrate_update
+dehydrate_update
