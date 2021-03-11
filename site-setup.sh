@@ -47,4 +47,7 @@ server{
         server_name $yourdomain www.$yourdomain;
 	return 301 https://\$host\$request_uri;
 	}" > /etc/nginx/sites-enabled/$yourdomain.conf
+nginx -s reload
 }
+
+setup_site
