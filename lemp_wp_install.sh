@@ -88,7 +88,7 @@ setup_certificate_siteconf() {
 	}" > /etc/nginx/sites-enabled/$yourdomain.conf
 
 	nginx -s reload
-dehydrated -c
+	dehydrated -c
 }
 
 dehydrate_update() {
@@ -128,7 +128,7 @@ setup_nginx_full() {
 
 setup_wordpress() {
 	wpcli_install
-	setup_wordpress
+	wordpress_install
 }
 
 packages_install
