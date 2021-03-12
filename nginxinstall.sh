@@ -4,7 +4,7 @@ yourdomain="$1"
 
 php_install() {
 	apt update
-	apt install --no-install-recommends -y php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip php-cli
+	apt install --no-install-recommends -y php-curl php-gd php-mbstring php-xml php-xmlrpc php-soap php-intl php-zip php-cli php-fpm php-mysql php-mysqlnd
 }
 
 nginx_light_install() {
